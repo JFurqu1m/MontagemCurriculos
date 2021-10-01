@@ -21,7 +21,7 @@ namespace MontagemCurriculo.Models
         [StringLength(50, ErrorMessage = "Use menos caracteres")]        
         [DataType(DataType.Password)]
         public string Senha { get; set; }
-        public ICollection<InformacoesLogin> InformacoesLogin { get; set; }
+        public ICollection<InformacaoLogin> InformacoesLogin { get; set; }
         public ICollection<Curriculo> Curriculos { get; set; }
     }
 }
