@@ -12,10 +12,50 @@
                 Objetivos <a asp-action="Create" asp-controller="Objetivos" asp-route-id="@Model.CurriculoId" class="btn-floating btn-small blue darken-4"><i class="material-icons">add</i></a>
             </h5>
         </li>
-        @await Component.InvokeAsync("Objetivos", Model.CurriculoId) 
+        @await Component.InvokeAsync("Objetivos", Model.CurriculoId)
     </ul>
 
 
 
 </div>
-   
+
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Confirmar exclusão</h4>
+            <p>Deseja prosseguir com a exclusão ?</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn green accent-4">Não</a>
+            <a class="modal-close btn red accent-4 btnConfirmar">Sim</a>
+        </div>
+    </div>
+
+
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $(".modal").modal();
+            });
+
+            function ExibirModal(id, objeto) {
+                $("#modal1").modal("open");
+
+                var url = "/" + objeto + "/Delete"
+
+                $(".btnConfirmar").on('click', function () {
+                    $.ajax({
+                        method: "POST",
+                        url: url,
+                        data: { id: id },
+                        success: function () {
+                            alert("Exclusão feita com sucesso ");
+                            location.reload();
+                        }
+                    });
+                })
+            }
+
+        </script>
+    }
+
