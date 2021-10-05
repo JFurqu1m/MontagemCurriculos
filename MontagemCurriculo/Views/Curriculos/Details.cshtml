@@ -1,30 +1,21 @@
 ﻿@model MontagemCurriculo.Models.Curriculo
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Currículo " + Model.Nome;
 }
 
-<h2>Details</h2>
+<div>
 
-<div>
-    <h4>Curriculo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.Email)
-        </dd>
-    </dl>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5>
+                Objetivos <a asp-action="Create" asp-controller="Objetivos" asp-route-id="@Model.CurriculoId" class="btn-floating btn-small blue darken-4"><i class="material-icons">add</i></a>
+            </h5>
+        </li>
+        @await Component.InvokeAsync("Objetivos", Model.CurriculoId) 
+    </ul>
+
+
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CurriculoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+   
